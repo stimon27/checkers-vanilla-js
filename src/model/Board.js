@@ -119,19 +119,6 @@ export default class Board {
         }
     }
 
-    getPawn = (position) => {
-        PositionValidator.validatePosition(position);
-        return this._board[
-            Board.getFlatIndex(position, this._size)
-        ].getPawn() != null
-            ? Object.freeze(
-                  this._board[
-                      Board.getFlatIndex(position, this._size)
-                  ].getPawn()
-              )
-            : null;
-    };
-
     static getGrid = (size) =>
         Array(size)
             .fill()
