@@ -51,3 +51,5 @@ export default class Pawn {
 
     static createPawn() {}
 }
+
+export const PAWN_TYPES = Pawn.PAWN_TYPES;

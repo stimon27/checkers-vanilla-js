@@ -4,6 +4,7 @@ import Pawn from "./Pawn.js";
 import DEFAULT_BOARD_CONFIG from "../config/DefaultBoardConfig.js";
 import PositionValidator from "../validators/PositionValidator.js";
 import ConfigValidator from "../validators/ConfigValidator.js";
+import MovePawnService from "../service/MovePawnService.js";
 
 export default class Board {
     setInitialState(config) {
@@ -31,6 +32,10 @@ export default class Board {
 
     get board() {
         return Object.freeze(this._board);
+    }
+
+    get mutableBoard() {
+        return this._board;
     }
 
     get size() {
@@ -130,4 +135,22 @@ export default class Board {
             .flatMap((x) => x);
 
     static getFlatIndex = ({ posX, posY }, size) => posY * size + posX;
+
+    toMovePawnCommand = (srcBoardField, dstBoardField) => ({
+        srcPosition: srcBoardField.position,
+        dstPosition: dstBoardField.position,
+        pawnType: srcBoardField.pawn.type,
+        board: this.mutableBoard,
+        size: this._size,
+    });
+
+    movePawn(srcBoardField, dstBoardField) {
+        const movePawnCommand = Board.toMovePawnCommand(
+            srcBoardField,
+            dstBoardField
+        );
+        MovePawnService.movePawn(movePawnCommand);
+    }
 }
+
+export const getFlatIndex = Board.getFlatIndex;
