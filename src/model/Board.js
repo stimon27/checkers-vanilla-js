@@ -8,8 +8,8 @@ import ConfigValidator from "../validators/ConfigValidator.js";
 export default class Board {
     setInitialState(config) {
         this._config = config;
-        this._board = [];
-        this._size = 0;
+        this._board = null;
+        this._size = NaN;
     }
 
     constructor(config) {
