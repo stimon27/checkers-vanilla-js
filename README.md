@@ -6,3 +6,5 @@ First, simple project created with JavaScript for learning purposes.
 // TODO: Error handling
 // TODO: Implement Move Pawn Use Case
 // TODO: ...
+
+// Project discontinued
